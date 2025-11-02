@@ -432,7 +432,7 @@ func createOAuthServerClusters(tCtx *types.ResourceVersionTable,
 			}
 		} else {
 			// Create a cluster with the token endpoint url.
-			if err := createOAuth2TokenEndpointCluster(tCtx, oidc.Provider.TokenEndpoint); err != nil {
+			if err := createOAuth2TokenEndpointCluster(tCtx, oidc.Provider.Traffic, oidc.Provider.TokenEndpoint); err != nil {
 				errs = errors.Join(errs, err)
 			}
 		}
@@ -443,9 +443,7 @@ func createOAuthServerClusters(tCtx *types.ResourceVersionTable,
 
 // createOAuth2TokenEndpointClusters creates token endpoint clusters from the
 // provided routes, if needed.
-func createOAuth2TokenEndpointCluster(tCtx *types.ResourceVersionTable,
-	tokenEndpoint string,
-) error {
+func createOAuth2TokenEndpointCluster(tCtx *types.ResourceVersionTable, traffic *ir.TrafficFeatures, tokenEndpoint string) error {
 	var (
 		cluster *urlCluster
 		ds      *ir.DestinationSetting
@@ -477,11 +475,20 @@ func createOAuth2TokenEndpointCluster(tCtx *types.ResourceVersionTable,
 	}
 
 	clusterArgs := &xdsClusterArgs{
-		name:         cluster.name,
-		settings:     []*ir.DestinationSetting{ds},
-		tSocket:      tSocket,
-		endpointType: cluster.endpointType,
-		metadata:     ds.Metadata,
+		name:              cluster.name,
+		settings:          []*ir.DestinationSetting{ds},
+		tSocket:           tSocket,
+		loadBalancer:      traffic.LoadBalancer,
+		proxyProtocol:     traffic.ProxyProtocol,
+		circuitBreaker:    traffic.CircuitBreaker,
+		healthCheck:       traffic.HealthCheck,
+		timeout:           traffic.Timeout,
+		tcpkeepalive:      traffic.TCPKeepalive,
+		backendConnection: traffic.BackendConnection,
+		endpointType:      cluster.endpointType,
+		dns:               traffic.DNS,
+		http2Settings:     traffic.HTTP2,
+		metadata:          ds.Metadata,
 	}
 	if cluster.tls {
 		if tSocket, err = buildXdsUpstreamTLSSocket(cluster.hostname); err != nil {
