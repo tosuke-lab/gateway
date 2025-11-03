@@ -4,17 +4,20 @@ on:
     branches:
     - "main"
     - "release/v*"
+    - "v1.5.4-dns-all"
     paths-ignore:
     - "**/*.png"
   pull_request:
     branches:
     - "main"
     - "release/v*"
+    - "v1.5.4-dns-all"
     paths-ignore:
     - "**/*.png"
 
 permissions:
   contents: read
+  packages: write
 
 jobs:
   lint:
@@ -55,6 +58,7 @@ jobs:
     - name: Run Coverage Tests
       run: make go.test.coverage
     - name: Upload coverage to Codecov
+      if: github.ref != 'refs/heads/v1.5.4-dns-all'
       uses: codecov/codecov-action@18283e04ce6e62d37312384ff67231eb8fd56d24  # v5.4.3
       with:
         fail_ci_if_error: true
@@ -249,20 +253,33 @@ jobs:
 
     # build and push image
     - name: Login to DockerHub
-      if: github.event_name == 'push'
+      if: github.event_name == 'push' && github.ref != 'refs/heads/v1.5.4-dns-all'
       uses: docker/login-action@74a5d142397b4f367a81961eba4e8cd7edddf772  # v3.4.0
       with:
         username: ${{ vars.DOCKERHUB_USERNAME }}
         password: ${{ secrets.DOCKERHUB_PASSWORD }}
 
+    - name: Login to GHCR
+      if: github.event_name == 'push' && github.ref == 'refs/heads/v1.5.4-dns-all'
+      uses: docker/login-action@74a5d142397b4f367a81961eba4e8cd7edddf772  # v3.4.0
+      with:
+        registry: ghcr.io
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
+
     - name: Setup Multiarch Environment
       if: github.event_name == 'push'
       run: make image.multiarch.setup
 
-    - name: Build and Push EG Commit Image
-      if: github.event_name == 'push'
+    - name: Build and Push EG Commit Image (DockerHub)
+      if: github.event_name == 'push' && github.ref != 'refs/heads/v1.5.4-dns-all'
       # tag is set to the short SHA of the commit
       run: make image.push.multiarch PLATFORMS="linux_amd64 linux_arm64" IMAGE=envoyproxy/gateway-dev
+
+    - name: Build and Push EG Commit Image (GHCR)
+      if: github.event_name == 'push' && github.ref == 'refs/heads/v1.5.4-dns-all'
+      # tag is set to v1.5.4-ipv6 for this branch
+      run: make image.push.multiarch PLATFORMS="linux_amd64 linux_arm64" IMAGE=ghcr.io/tosuke-lab/envoy-gateway TAG=v1.5.4-ipv6
 
     - name: Build and Push EG Latest Image
       if: github.event_name == 'push' && github.ref == 'refs/heads/main'
