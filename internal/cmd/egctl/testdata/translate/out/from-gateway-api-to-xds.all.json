@@ -493,7 +493,7 @@
                 },
                 "commonLbConfig": {},
                 "connectTimeout": "10s",
-                "dnsLookupFamily": "V4_PREFERRED",
+                "dnsLookupFamily": "ALL",
                 "edsClusterConfig": {
                   "edsConfig": {
                     "ads": {},
@@ -548,7 +548,7 @@
                 },
                 "commonLbConfig": {},
                 "connectTimeout": "10s",
-                "dnsLookupFamily": "V4_PREFERRED",
+                "dnsLookupFamily": "ALL",
                 "edsClusterConfig": {
                   "edsConfig": {
                     "ads": {},
@@ -614,7 +614,7 @@
                 },
                 "commonLbConfig": {},
                 "connectTimeout": "10s",
-                "dnsLookupFamily": "V4_PREFERRED",
+                "dnsLookupFamily": "ALL",
                 "edsClusterConfig": {
                   "edsConfig": {
                     "ads": {},
@@ -669,7 +669,7 @@
                 },
                 "commonLbConfig": {},
                 "connectTimeout": "10s",
-                "dnsLookupFamily": "V4_PREFERRED",
+                "dnsLookupFamily": "ALL",
                 "edsClusterConfig": {
                   "edsConfig": {
                     "ads": {},
@@ -724,7 +724,7 @@
                 },
                 "commonLbConfig": {},
                 "connectTimeout": "10s",
-                "dnsLookupFamily": "V4_PREFERRED",
+                "dnsLookupFamily": "ALL",
                 "edsClusterConfig": {
                   "edsConfig": {
                     "ads": {},

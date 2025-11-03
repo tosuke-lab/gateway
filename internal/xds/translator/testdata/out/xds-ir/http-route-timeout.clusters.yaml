@@ -3,7 +3,7 @@
     - maxRetries: 1024
   commonLbConfig: {}
   connectTimeout: 10s
-  dnsLookupFamily: V4_PREFERRED
+  dnsLookupFamily: V6_ONLY
   edsClusterConfig:
     edsConfig:
       ads: {}
@@ -27,7 +27,7 @@
     - maxRetries: 1024
   commonLbConfig: {}
   connectTimeout: 10s
-  dnsLookupFamily: V4_PREFERRED
+  dnsLookupFamily: V6_ONLY
   edsClusterConfig:
     edsConfig:
       ads: {}
@@ -51,7 +51,7 @@
     - maxRetries: 1024
   commonLbConfig: {}
   connectTimeout: 10s
-  dnsLookupFamily: V4_PREFERRED
+  dnsLookupFamily: V6_ONLY
   edsClusterConfig:
     edsConfig:
       ads: {}
@@ -75,7 +75,7 @@
     - maxRetries: 1024
   commonLbConfig: {}
   connectTimeout: 10s
-  dnsLookupFamily: V4_PREFERRED
+  dnsLookupFamily: V6_ONLY
   edsClusterConfig:
     edsConfig:
       ads: {}
@@ -99,7 +99,7 @@
     - maxRetries: 1024
   commonLbConfig: {}
   connectTimeout: 10s
-  dnsLookupFamily: V4_PREFERRED
+  dnsLookupFamily: V6_ONLY
   edsClusterConfig:
     edsConfig:
       ads: {}
@@ -123,7 +123,7 @@
     - maxRetries: 1024
   commonLbConfig: {}
   connectTimeout: 10s
-  dnsLookupFamily: V4_PREFERRED
+  dnsLookupFamily: V6_ONLY
   edsClusterConfig:
     edsConfig:
       ads: {}
@@ -147,7 +147,7 @@
     - maxRetries: 1024
   commonLbConfig: {}
   connectTimeout: 10s
-  dnsLookupFamily: V4_PREFERRED
+  dnsLookupFamily: V6_ONLY
   edsClusterConfig:
     edsConfig:
       ads: {}
