@@ -114,7 +114,7 @@ type buildClusterResult struct {
 }
 
 func buildXdsCluster(args *xdsClusterArgs) (*buildClusterResult, error) {
-	dnsLookupFamily := clusterv3.Cluster_V4_PREFERRED
+	dnsLookupFamily := clusterv3.Cluster_V6_ONLY
 	customDNSPolicy := args.dns != nil && args.dns.LookupFamily != nil
 	// apply DNS lookup family if custom DNS traffic policy is set
 	if customDNSPolicy {

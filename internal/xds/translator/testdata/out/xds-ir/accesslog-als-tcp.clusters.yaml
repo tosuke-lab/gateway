@@ -4,7 +4,7 @@
       maxRetries: 1024
   commonLbConfig: {}
   connectTimeout: 15s
-  dnsLookupFamily: V4_PREFERRED
+  dnsLookupFamily: V6_ONLY
   edsClusterConfig:
     edsConfig:
       ads: {}

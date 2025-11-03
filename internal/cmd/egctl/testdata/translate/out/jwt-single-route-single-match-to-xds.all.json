@@ -329,7 +329,7 @@
                 },
                 "commonLbConfig": {},
                 "connectTimeout": "10s",
-                "dnsLookupFamily": "V4_PREFERRED",
+                "dnsLookupFamily": "ALL",
                 "edsClusterConfig": {
                   "edsConfig": {
                     "ads": {},
@@ -384,7 +384,7 @@
                 },
                 "commonLbConfig": {},
                 "connectTimeout": "10s",
-                "dnsLookupFamily": "V4_PREFERRED",
+                "dnsLookupFamily": "ALL",
                 "dnsRefreshRate": "30s",
                 "ignoreHealthOnHostRemoval": true,
                 "lbPolicy": "LEAST_REQUEST",

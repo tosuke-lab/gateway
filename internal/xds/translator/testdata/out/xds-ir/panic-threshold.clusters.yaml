@@ -5,7 +5,7 @@
     healthyPanicThreshold:
       value: 66
   connectTimeout: 10s
-  dnsLookupFamily: V4_PREFERRED
+  dnsLookupFamily: V6_ONLY
   edsClusterConfig:
     edsConfig:
       ads: {}
@@ -31,7 +31,7 @@
     healthyPanicThreshold:
       value: 80
   connectTimeout: 10s
-  dnsLookupFamily: V4_PREFERRED
+  dnsLookupFamily: V6_ONLY
   edsClusterConfig:
     edsConfig:
       ads: {}
@@ -57,7 +57,7 @@
     healthyPanicThreshold:
       value: 20
   connectTimeout: 10s
-  dnsLookupFamily: V4_PREFERRED
+  dnsLookupFamily: V6_ONLY
   edsClusterConfig:
     edsConfig:
       ads: {}
@@ -81,7 +81,7 @@
     - maxRetries: 1024
   commonLbConfig: {}
   connectTimeout: 10s
-  dnsLookupFamily: V4_PREFERRED
+  dnsLookupFamily: V6_ONLY
   edsClusterConfig:
     edsConfig:
       ads: {}
@@ -107,7 +107,7 @@
     healthyPanicThreshold:
       value: 80
   connectTimeout: 10s
-  dnsLookupFamily: V4_PREFERRED
+  dnsLookupFamily: V6_ONLY
   edsClusterConfig:
     edsConfig:
       ads: {}

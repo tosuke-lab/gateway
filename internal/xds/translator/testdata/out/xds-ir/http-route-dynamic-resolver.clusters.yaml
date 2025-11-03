@@ -6,12 +6,12 @@
     typedConfig:
       '@type': type.googleapis.com/envoy.extensions.clusters.dynamic_forward_proxy.v3.ClusterConfig
       dnsCacheConfig:
-        dnsLookupFamily: V4_PREFERRED
+        dnsLookupFamily: V6_ONLY
         dnsRefreshRate: 30s
         name: httproute/default/httproute-1/rule/0
   commonLbConfig: {}
   connectTimeout: 10s
-  dnsLookupFamily: V4_PREFERRED
+  dnsLookupFamily: V6_ONLY
   ignoreHealthOnHostRemoval: true
   lbPolicy: CLUSTER_PROVIDED
   loadBalancingPolicy:
